@@ -16,24 +16,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="larrylee">
   <meta name="keywords" content="">
   
     <meta name="description" content="【一文读懂系列】CPU基础知识 标题：带你走进 CPU 的奇妙世界 （此处可以插入一些相关的 CPU 图片，比如不同年代的 CPU 外观、内部结构示意图、指令集架构的图示等） 一、引言  在当今数字化的时代，CPU（中央处理器）无疑是计算机的核心组件，就如同人的大脑一样，掌控着整个系统的运行。但你真的了解 CPU 吗？今天，让我们一起揭开 CPU 的神秘面纱，探索其基础知识。  二、什么是 CPU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CPU基础知识">
-<meta property="og:url" content="http://example.com/2024/08/26/CPU%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:url" content="https://moonjagger.github.io/2024/08/26/CPU%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="【一文读懂系列】CPU基础知识 标题：带你走进 CPU 的奇妙世界 （此处可以插入一些相关的 CPU 图片，比如不同年代的 CPU 外观、内部结构示意图、指令集架构的图示等） 一、引言  在当今数字化的时代，CPU（中央处理器）无疑是计算机的核心组件，就如同人的大脑一样，掌控着整个系统的运行。但你真的了解 CPU 吗？今天，让我们一起揭开 CPU 的神秘面纱，探索其基础知识。  二、什么是 CPU">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\LIYUAN\Pictures\%E6%96%87%E7%AB%A0%E5%9B%BE%E5%BA%93\b9d953e441dad584fc60693b16e93b6d.jpeg">
-<meta property="og:image" content="c:\Users\LIYUAN\Pictures\%E6%96%87%E7%AB%A0%E5%9B%BE%E5%BA%93\Untitled.jpg">
-<meta property="og:image" content="c:\Users\LIYUAN\AppData\Roaming\Typora\typora-user-images\image-20240826091348535.png">
+<meta property="og:image" content="https://moonjagger.github.io/pic/cpu_arch.jpeg">
+<meta property="og:image" content="https://moonjagger.github.io/pic/cpu_flow.jpg">
+<meta property="og:image" content="https://moonjagger.github.io/pic/cpu_history.jpg">
+<meta property="og:image" content="https://moonjagger.github.io/pic/cpu_ins.png">
 <meta property="article:published_time" content="2024-08-26T01:37:17.000Z">
-<meta property="article:modified_time" content="2024-08-26T01:37:43.805Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-08-26T02:53:30.517Z">
+<meta property="article:author" content="larrylee">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:\Users\LIYUAN\Pictures\%E6%96%87%E7%AB%A0%E5%9B%BE%E5%BA%93\b9d953e441dad584fc60693b16e93b6d.jpeg">
+<meta name="twitter:image" content="https://moonjagger.github.io/pic/cpu_arch.jpeg">
   
   
   
@@ -75,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"moonjagger.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -286,13 +287,13 @@
 <p>CPU 是 Central Processing Unit 的缩写，即中央处理器。它是一块超大规模的集成电路，负责处理计算机中的绝大部分数据和指令。CPU作为计算机系统的运算和控制核心，是信息处理、程序运行的最终执行单元。简单来说，CPU 就是计算机的“指挥中心”，决定了计算机的运行速度和性能。</p>
 <p> <strong>三、CPU 的组成部分和工作原理</strong> </p>
 <p>CPU主要由计算单元（ALU）、控制单元（CU）、寄存器（Register）、高速缓存器（Cache）和它们之间的连接总线构成。控制单元负责协调并控制计算机各部件执行程序的指令序列，基本功能包括取指令、分析指令和执行指令。计算单元则负责根据控制器的命令执行计算机的算术运算、位移等操作以及地址的运算和转换。寄存器则负责计算过程中临时数据的存储。</p>
-<p><img src="C:\Users\LIYUAN\Pictures\文章图库\b9d953e441dad584fc60693b16e93b6d.jpeg" srcset="/img/loading.gif" lazyload alt="b9d953e441dad584fc60693b16e93b6d"></p>
+<p><img src="/pic/cpu_arch.jpeg" srcset="/img/loading.gif" lazyload alt="CPU架构图"></p>
 <p>CPU 的工作过程可以概括为取指令、译码、执行和写回四个阶段。 取指令阶段，CPU 从内存中读取指令。 译码阶段，对指令进行解码，确定要执行的操作。 执行阶段，按照译码结果进行实际的运算或操作。 写回阶段，将执行结果写回内存或寄存器。 例如，当我们在计算机上运行一个计算 1 + 2 的程序时，CPU 会先读取相关指令，然后进行译码，明白要进行加法运算，接着执行 1 + 2 的计算，最后将结果 3 写回。</p>
-<p>![Welcome to FigJam (1)](C:\Users\LIYUAN\Pictures\文章图库\Welcome to FigJam (1).jpg)</p>
+<p><img src="/pic/cpu_flow.jpg" srcset="/img/loading.gif" lazyload alt="指令运行方式"></p>
 <p><strong>四、CPU 的发展历程</strong> </p>
 <p>CPU 的发展可谓是一部波澜壮阔的科技进化史。 早期的 CPU 体积庞大、性能有限。比如英特尔 4004，它是第一款商用微处理器，但功能相对简单。 处理器架构设计的迭代更新以及集成电路工艺的不断提升促使其不断发展完善。从最初专用于数学计算到广泛应用于通用计算，从4位到8位、16位、32位处理器，最后到64位处理器，从各厂商互不兼容到不同指令集架构规范的出现，CPU发展已经有40多年的历史了。</p>
 <p>我们通常将其分成六个阶段。</p>
-<p><img src="C:\Users\LIYUAN\Pictures\文章图库\Untitled.jpg" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<p><img src="/pic/cpu_history.jpg" srcset="/img/loading.gif" lazyload alt="CPU发展历程"></p>
 <p> (1)第一阶段(1971年-1973年)。这是4位和8位低档微处理器时代，代表产品是Intel 4004处理器。 1971年，Intel生产的4004微处理器将运算器和控制器集成在一个芯片上，标志着CPU的诞生; 1978年，8086处理器的出现奠定了X86指令集架构， 随后8086系列处理器被广泛应用于个人计算机终端、高性能服务器以及云服务器中。</p>
 <p> (2)第二阶段(1974年-1977年)。这是8位中高档微处理器时代，代表产品是Intel 8080。此时指令系统已经比较完善了。</p>
 <p> (3)第三阶段(1978年-1984年)。这是16位微处理器的时代，代表产品是Intel 8086。相对而言已经比较成熟了。 </p>
@@ -304,7 +305,7 @@
 <p>目前，指令集可以分为复杂指令集（CISC）和简单指令集（RISC）。</p>
 <p>指令集架构是 CPU 的重要组成部分，常见的有 x86、ARM 等。 x86 指令集在个人电脑领域应用广泛，具有强大的性能和广泛的软件支持。 ARM 指令集则在移动设备领域占据主导地位，以低功耗和高效能著称。 不同的指令集架构适用于不同的场景，也影响着 CPU 的性能和应用范围。 </p>
 <p>对比表格：</p>
-<p><img src="C:\Users\LIYUAN\AppData\Roaming\Typora\typora-user-images\image-20240826091348535.png" srcset="/img/loading.gif" lazyload alt="image-20240826091348535"></p>
+<p><img src="/pic/cpu_ins.png" srcset="/img/loading.gif" lazyload alt="CPU指令集对比"></p>
 <p><strong>六、CPU 的主要性能指标</strong></p>
 <ol>
 <li><strong>主频</strong>：主频也叫时钟频率，它表示 CPU 每秒可以执行的周期数。单位是兆赫（MHz）或吉赫（GHz）。  较高的时钟速度通常表示更快的指令处理和整体系统响应能力。一般来说，主频越高，CPU 的运算速度越快。但这并不是绝对的， 其他因素（例如核心数量、架构和高速缓存）也发挥着重要作用。</li>
@@ -343,13 +344,13 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>CPU基础知识</div>
-      <div>http://example.com/2024/08/26/CPU基础知识/</div>
+      <div>https://moonjagger.github.io/2024/08/26/CPU基础知识/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>larrylee</div>
         </div>
       
       
