@@ -5,9 +5,7 @@ const DARK = "dark";
 function getPreferredTheme(): string {
   const stored = localStorage.getItem(THEME_KEY);
   if (stored) return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? DARK
-    : LIGHT;
+  return DARK; // 默认深色主题
 }
 
 // Reuse the value already set by the inline FOUC-prevention script if available.
@@ -61,9 +59,12 @@ document.addEventListener("astro:before-swap", event => {
 });
 
 // Sync with OS-level dark/light preference changes.
+// Only applies when the user has manually chosen a theme;
+// otherwise the site stays dark (the default) regardless of OS preference.
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", ({ matches }) => {
+    if (!localStorage.getItem(THEME_KEY)) return;
     themeValue = matches ? DARK : LIGHT;
     persist();
   });
