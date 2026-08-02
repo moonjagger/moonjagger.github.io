@@ -30,6 +30,13 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      # 部署到 Cloudflare Pages（Direct Upload：代码不存 CF，仅上传构建产物）
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=moonjagger-blog
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

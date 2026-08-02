@@ -2,11 +2,11 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://moonjagger.github.io/",
+    url: "https://littlefun.cc/",
     title: "MoonJagger|Blog",
     description: "谦谦君子，温和坚定",
     author: "LarryLee",
-    profile: "https://moonjagger.github.io/",
+    profile: "https://littlefun.cc/",
     ogImage: "banner.jpg",
     lang: "zh-CN",
     timezone: "Asia/Shanghai",
