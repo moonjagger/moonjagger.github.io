@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Socials from "./Socials.astro";
+import { useTranslations } from "@/i18n";
+
+type Props = {
+  noMarginTop?: boolean;
+} & HTMLAttributes<"footer">;
+
+const { noMarginTop = false, class: className, ...attrs } = Astro.props;
+
+const t = useTranslations(Astro.currentLocale);
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
+  {...attrs}
+>
+  <div
+    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
+  >
+    <Socials />
+    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
+      <span>{t.footer.copyright} &#169; {currentYear}</span>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <span>{t.footer.allRightsReserved}</span>
+    </div>
+  </div>
+  <!-- 自定义：站点运行倒计时 + busuanzi 访问统计（继承自原 Hexo 站） -->
+  <div
+    class="flex flex-col items-center gap-0.5 pb-6 text-xs text-base-content opacity-60"
+  >
+    <span id="timeDate">🚀 已持续航行 <span id="timeDateDays">0</span> 天</span>
+    <span id="timeTime">0 时 0 分 0 秒</span>
+    <span>
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 <span id="busuanzi_value_site_pv"></span> 次
+      </span>
+      <span id="busuanzi_container_site_uv" style="display: none">
+        &nbsp;|&nbsp;总访客数 <span id="busuanzi_value_site_uv"></span> 人
+      </span>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // 建站纪念：2024-08-26 起持续航行
+  const startDate = new Date("08/26/2024 00:00:00");
+  const daysEl = document.getElementById("timeDateDays");
+  const timeEl = document.getElementById("timeTime");
+
+  function createtime() {
+    const diff = (Date.now() - startDate.getTime()) / 1000;
+    if (diff < 0) return;
+    const d = Math.floor(diff / 86400);
+    const h = Math.floor((diff % 86400) / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = Math.round(diff % 60);
+    daysEl!.textContent = String(d);
+    timeEl!.textContent = `${h} 时 ${m} 分 ${s} 秒`;
+  }
+  createtime();
+  setInterval(createtime, 250);
+</script>
+<script
+  is:inline
+  defer
+  src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+></script>
