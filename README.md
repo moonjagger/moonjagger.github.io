@@ -26,7 +26,24 @@ src/content/posts/          # 文章（Markdown）
   └── YYYY/MM/DD/文章名.md   # 按日期分目录，路径决定文章 URL
 public/pic/                 # 图片资源
 scripts/extract_posts.mjs   # 旧站文章还原脚本（local-search.xml → Markdown）
+scripts/new-post.sh         # 新文章模板生成脚本
+scripts/publish.sh          # 一键提交推送脚本
 ```
+
+## 写文章并发布（三步）
+
+```bash
+# 1. 生成文章模板（自动按日期建目录 + front-matter）
+bash scripts/new-post.sh "文章标题"
+
+# 2. 编辑文章（Markdown），本地预览
+npm run dev          # 打开 http://localhost:4321 实时预览
+
+# 3. 一键发布（提交 + 推送，自动部署 GitHub Pages + Cloudflare Pages）
+bash scripts/publish.sh "提交说明"
+```
+
+图片放到 `public/pic/`，正文用 `![描述](/pic/xxx.jpg)` 引用。
 
 ## 文章 front-matter
 
