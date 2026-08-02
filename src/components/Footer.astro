@@ -43,22 +43,46 @@ const currentYear = new Date().getFullYear();
   </div>
 </footer>
 
-<script>
-  // 建站纪念：2024-08-26 起持续运行
+<script is:inline data-astro-rerun>
+  // 建站纪念：2024-08-26 起持续运行（每次导航重新执行，避免定时器累积）
   const startDate = new Date("08/26/2024 00:00:00");
   const daysEl = document.getElementById("timeDateDays");
-
   function createtime() {
+    if (!daysEl) return;
     const diff = (Date.now() - startDate.getTime()) / 1000;
     if (diff < 0) return;
-    const d = Math.floor(diff / 86400);
-    daysEl!.textContent = String(d);
+    daysEl.textContent = String(Math.floor(diff / 86400));
   }
   createtime();
   setInterval(createtime, 60000);
 </script>
-<script
-  is:inline
-  defer
-  src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
-></script>
+<script is:inline data-astro-rerun>
+  // busuanzi 统计：兼容 Astro View Transitions（每次导航后重新执行）
+  (function () {
+    const pvEl = document.getElementById("busuanzi_value_site_pv");
+    const uvEl = document.getElementById("busuanzi_value_site_uv");
+    const pvBox = document.getElementById("busuanzi_container_site_pv");
+    const uvBox = document.getElementById("busuanzi_container_site_uv");
+    if (!pvEl || !uvEl || !pvBox || !uvBox) return;
+    const cb =
+      "BusuanziCallback_" + Math.floor(1099511627776 * Math.random());
+    window[cb] = function (data) {
+      delete window[cb];
+      if (!data) return;
+      if (data.site_pv != null) {
+        pvEl.textContent = data.site_pv;
+        pvBox.style.display = "inline";
+      }
+      if (data.site_uv != null) {
+        uvEl.textContent = data.site_uv;
+        uvBox.style.display = "inline";
+      }
+    };
+    const s = document.createElement("script");
+    s.src = "https://busuanzi.ibruce.info/busuanzi?jsonpCallback=" + cb;
+    s.onerror = function () {
+      delete window[cb];
+    };
+    document.head.appendChild(s);
+  })();
+</script>
